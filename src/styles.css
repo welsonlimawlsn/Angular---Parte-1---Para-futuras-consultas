@@ -38,10 +38,7 @@ body {
   background: #fff;
 }
 .place-info-box-icon {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 2px;
+  border-radius: 2px 0 0 2px;
   display: block;
   float: left;
   /*height: 120px;*/
@@ -138,10 +135,7 @@ body {
   background: #fff;
 }
 .menu-item-info-box-icon {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 2px;
+  border-radius: 2px 0 0 2px;
   display: block;
   float: left;
   /*height: 120px;*/
