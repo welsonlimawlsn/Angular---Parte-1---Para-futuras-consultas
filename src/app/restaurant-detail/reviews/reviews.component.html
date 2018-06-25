@@ -1,5 +1,5 @@
 <!-- INICIO DO CONTEUDO -->
-<div class="col-xs-12 col-sm-6" *ngFor="let review of reviews | async">
+<div class="col-xs-12 col-sm-6" *ngFor="let review of reviews | async" [@review-appeared]="reviewState">
 
   <div class="box box-solid">
     <div class="box-header with-border">
