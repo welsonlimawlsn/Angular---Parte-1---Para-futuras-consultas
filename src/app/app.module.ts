@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
-import {HttpModule} from '@angular/http';
 import {PreloadAllModules, RouterModule} from '@angular/router';
 
 
@@ -19,6 +18,7 @@ import {OrderSummaryComponent} from './order-summary/order-summary.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
