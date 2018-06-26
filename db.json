@@ -450,6 +450,19 @@
         }
       ],
       "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "email": "amanda@gmail.com",
+      "password": "amanda21",
+      "id": 7
+    },
+    {
+      "email": "amanda@gmail.com",
+      "password": "amanda21",
+      "id": 8
     }
   ]
 }
