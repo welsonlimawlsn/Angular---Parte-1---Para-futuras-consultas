@@ -6,10 +6,12 @@ import {Order, OrderItem} from './order.model';
 import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationErrors} from '@angular/forms/src/directives/validators';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'mt-order',
-  templateUrl: './order.component.html'
+  templateUrl: './order.component.html',
+  viewProviders: [Title]
 })
 export class OrderComponent implements OnInit {
 
@@ -26,7 +28,8 @@ export class OrderComponent implements OnInit {
 
   delivery = 8;
 
-  constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder, private title: Title) {
+    this.title.setTitle('Meat | Pedido');
   }
 
   ngOnInit() {

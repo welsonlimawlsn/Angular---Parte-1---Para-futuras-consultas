@@ -2,22 +2,65 @@ import {Component, OnInit} from '@angular/core';
 import {Restaurant} from './restaurant/restaurant.model';
 import {Title} from '@angular/platform-browser';
 import {RestaurantsService} from './restaurants.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/from';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'mt-restaurants',
   templateUrl: './restaurants.component.html',
-  viewProviders: [Title]
+  viewProviders: [Title],
+  animations: [
+    trigger('toggleSearch', [
+      state('hidden', style({
+        opacity: 0,
+        'max-height': 0
+      })),
+      state('visible', style({
+        opacity: 1,
+        'max-height': '70px',
+        'margin-top': '20px'
+      })),
+      transition('* => *', animate('250ms 0s ease-in-out'))
+    ])
+  ]
 })
 export class RestaurantsComponent implements OnInit {
 
+  searchBarState = 'hidden';
+
   restaurants: Restaurant[];
 
-  constructor(private title: Title, private restaurantsService: RestaurantsService) {
+  searchForm: FormGroup;
+  searchControl: FormControl;
+
+  constructor(private formBuilder: FormBuilder, private title: Title, private restaurantsService: RestaurantsService) {
     title.setTitle('Meat | Restaurantes');
   }
 
   ngOnInit() {
+    this.searchControl = this.formBuilder.control('');
+    this.searchForm = this.formBuilder.group({
+      searchControl: this.searchControl
+    });
+
+    this.searchControl.valueChanges
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .switchMap(searchTerm => this.restaurantsService.restaurants(searchTerm)
+        .catch(err => Observable.from([])))
+      .subscribe(restaurants => this.restaurants = restaurants);
+
     this.restaurantsService.restaurants().subscribe(restaurants => this.restaurants = restaurants);
   }
 
+  toggleSearch() {
+    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden';
+  }
 }
