@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {ShoppingCartService} from '../restaurant-detail/shopping-cart/shopping-cart.service';
 import {CartItem} from '../restaurant-detail/shopping-cart/cart-item.model';
 import {Order} from './order.model';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs';
 import {MEAT_API} from '../app.api';
 import {HttpClient} from '@angular/common/http';
 

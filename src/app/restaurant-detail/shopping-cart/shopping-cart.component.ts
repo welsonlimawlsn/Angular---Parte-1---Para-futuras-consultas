@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from './shopping-cart.service';
 import {CartItem} from './cart-item.model';
 import {MenuItem} from '../menu-item/menu-item.model';
-import {trigger, animate, style, transition, state, keyframes} from '@angular/animations';
+import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'mt-shopping-cart',
   templateUrl: './shopping-cart.component.html',
+  // preserveWhitespaces: true,
   animations: [
     trigger('row', [
       state('ready', style({
