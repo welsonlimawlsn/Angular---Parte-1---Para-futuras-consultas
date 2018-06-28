@@ -10,7 +10,10 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class OrderService {
 
-  constructor(private shoppingCartService: ShoppingCartService, private http: HttpClient) {
+  constructor(
+    private shoppingCartService: ShoppingCartService,
+    private http: HttpClient
+  ) {
   }
 
   cartItems(): CartItem[] {

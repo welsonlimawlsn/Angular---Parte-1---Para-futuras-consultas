@@ -463,6 +463,46 @@
       "email": "amanda@gmail.com",
       "password": "amanda21",
       "id": 8
+    },
+    {
+      "name": "Amanda",
+      "email": "amanda@gmail.com",
+      "emailConfirmation": "amanda@gmail.com",
+      "address": "QNR 01 Conjunto G",
+      "number": "08",
+      "optionalAddress": "Casa",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "cup-cake"
+        },
+        {
+          "quantity": 1,
+          "menuId": "donut"
+        },
+        {
+          "quantity": 2,
+          "menuId": "bread"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "name": "Welson",
+      "email": "welsonlimawlsn@gmai.com",
+      "emailConfirmation": "welsonlimawlsn@gmai.com",
+      "address": "QNR 01 ",
+      "number": "8",
+      "optionalAddress": "",
+      "paymentOption": "REF",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "espreso"
+        }
+      ],
+      "id": 10
     }
   ]
 }

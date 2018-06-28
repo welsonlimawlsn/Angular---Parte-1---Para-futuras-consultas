@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationErrors} from '@angular/forms/src/directives/validators';
 import {Title} from '@angular/platform-browser';
+import {NotificationService} from '../shared/messages/notification.service';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -28,7 +30,15 @@ export class OrderComponent implements OnInit {
 
   delivery = 8;
 
-  constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder, private title: Title) {
+  order: Order;
+
+  constructor(
+    private orderService: OrderService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private title: Title,
+    private notificationService: NotificationService
+  ) {
     this.title.setTitle('Meat | Pedido');
   }
 
@@ -80,10 +90,15 @@ export class OrderComponent implements OnInit {
   checkOrder(order: Order) {
     order.orderItems =
       this.cartItems().map(item => new OrderItem(item.quantity, item.menuItem.id));
-    this.orderService.checkOrder(order).subscribe(orderResponse => {
+    this.orderService.checkOrder(order)
+      .do(orderResponse => this.order = orderResponse)
+      .subscribe(orderResponse => {
       this.router.navigate(['/order-summary']);
       this.orderService.clear();
-    });
+    }, response => this.notificationService.nofify(response.error.message));
   }
 
+  isOrderCompleted(): boolean {
+    return this.order !== undefined;
+  }
 }
